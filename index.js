@@ -124,6 +124,9 @@ class SendGridTransport {
             }
 
             sgMail.send(msg, callback);
+            sgMail.send(msg, callback).then(()=>{}).catch((err)=>{
+                console.error('reject hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+            });
         });
     }
 }
