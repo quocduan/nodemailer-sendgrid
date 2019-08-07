@@ -68,7 +68,7 @@ class SendGridTransport {
                         {
                             let alternatives = source.alternatives.map(entry => {
                                 let alternative = {
-                                    content: entry.content,
+                                    content: entry.value,
                                     type: entry.contentType
                                 };
                                 return alternative;
@@ -113,13 +113,13 @@ class SendGridTransport {
             });
 
             if (msg.content && msg.content.length) {
-                if (msg.text) {
-                    msg.content.unshift({ type: 'text/plain', content: msg.text });
-                    delete msg.text;
-                }
                 if (msg.html) {
                     msg.content.unshift({ type: 'text/html', content: msg.html });
                     delete msg.html;
+                }
+                if (msg.text) {
+                    msg.content.unshift({ type: 'text/plain', content: msg.text });
+                    delete msg.text;
                 }
             }
 
